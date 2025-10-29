@@ -3,17 +3,8 @@ import styles from "./Search.module.css";
 
 const Search = () => {
   return (
-    <form>
-      <input
-        className={styles.search}
-        placeholder="search"
-        type="text"
-        name="search"
-      />
-      <label>
-        <input name="group1" type="radio" checked />
-        <span>All</span>
-      </label>
+    <form className={styles.inputContainer}>
+      <input type="text" placeholder="search" name="search"></input>
     </form>
   );
 };

@@ -1,12 +1,15 @@
-import Search from "./Controls/Search"
+import Filter from "./Controls/Filter";
+import Search from "./Controls/Search";
+import FilmList from "./FilmList";
 
 const Main = () => {
-
   return (
-    <div>
-      <Search/>
+    <div className="container">
+      <Search />
+      <Filter />
+      <FilmList />
     </div>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;
