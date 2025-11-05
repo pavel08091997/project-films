@@ -1,17 +1,21 @@
-import React from 'react'
-import FilmCard from './FilmCard'
-import styles from './FilmList.module.css'
+import React from "react";
+import FilmCard from "./FilmCard";
+import styles from "./FilmList.module.css";
 
-const FilmList = () => {
+const FilmList = ({ filmList = [] }) => {
   return (
     <div className={styles.list}>
-      <FilmCard/>
-      <FilmCard/>
-      <FilmCard/>
-      <FilmCard/>
-      <FilmCard/>
+      {filmList.map((item) => (
+        <FilmCard
+          key={item.imdbID}
+          Title={item.Title}
+          Year={item.Year}
+          Type={item.Type}
+          Poster={item.Poster}
+        />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default FilmList
+export default FilmList;

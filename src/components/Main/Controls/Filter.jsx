@@ -1,22 +1,33 @@
 import React from "react";
-
-  const GetElementFilter = ({value}) => (
-    <label>
-      <input type="radio" name="group1"/>
-      <span>{value}</span>
-    </label>
-  );
+import { useState } from "react";
+import GetElementFilter from "./GetElementFilter";
 
 const Filter = () => {
+  const [filter, setFilter] = useState("");
+
+  const handleChange = (event) => {
+    setFilter(event.target.value);
+  };
+
   return (
     <form action="#">
-      <GetElementFilter value={'all'}/>
-      <GetElementFilter value={'Movies only'}/>
-      <GetElementFilter value={'Series only'}/>
+      <GetElementFilter
+        value={"all"}
+        filter={filter}
+        handleChange={handleChange}
+      />
+      <GetElementFilter
+        value={"Movies only"}
+        filter={filter}
+        handleChange={handleChange}
+      />
+      <GetElementFilter
+        value={"Series only"}
+        filter={filter}
+        handleChange={handleChange}
+      />
     </form>
   );
 };
 
 export default Filter;
-
-
