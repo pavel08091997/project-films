@@ -9,23 +9,20 @@ const Filter = () => {
     setFilter(event.target.value);
   };
 
+  const filterValues = ["all", "Movies only", "Series only"];
+
   return (
     <form action="#">
-      <GetElementFilter
-        value={"all"}
-        filter={filter}
-        handleChange={handleChange}
-      />
-      <GetElementFilter
-        value={"Movies only"}
-        filter={filter}
-        handleChange={handleChange}
-      />
-      <GetElementFilter
-        value={"Series only"}
-        filter={filter}
-        handleChange={handleChange}
-      />
+      {filterValues.map((value) => {
+        return (
+          <GetElementFilter
+            key={value}
+            value={value}
+            filter={filter}
+            handleChange={handleChange}
+          />
+        );
+      })}
     </form>
   );
 };

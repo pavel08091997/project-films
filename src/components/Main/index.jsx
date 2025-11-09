@@ -6,19 +6,20 @@ import { useEffect } from "react";
 
 const Main = () => {
   const [filmList, setFilmList] = useState([]);
+  const [searchFilm, setSearchFilm] = useState("game");
 
   useEffect(() => {
-    fetch("http://www.omdbapi.com/?apikey=436600bc&s=game")
+    fetch(`http://www.omdbapi.com/?apikey=436600bc&s=${searchFilm}`)
       .then((response) => response.json())
       .then((data) => setFilmList(data.Search))
       .catch((err) => console.log(err));
-  }, []);
+  }, [searchFilm]);
 
   console.log(filmList);
   return (
     <>
       <div className="container">
-        <Search />
+        <Search setSearchFilm={setSearchFilm} />
         <Filter />
         <FilmList filmList={filmList} />
       </div>

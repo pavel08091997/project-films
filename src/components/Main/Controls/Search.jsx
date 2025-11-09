@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 import styles from "./Search.module.css";
 
-const Search = () => {
+const Search = ({ setSearchFilm }) => {
   const [value, setValue] = useState("");
 
   const handleChange = (event) => {
     setValue(event.target.value);
   };
   return (
-    <form className={styles.inputContainer}>
-      <input type="text" placeholder="search" name="search" value={value} onChange={handleChange} />
-    </form>
+    <div className={styles.inputContainer}>
+      <input
+        type="text"
+        placeholder="search"
+        name="search"
+        value={value}
+        onChange={handleChange}
+      />
+      <button className={styles.button} onClick={() => setSearchFilm(value)}>
+        Search
+      </button>
+    </div>
   );
 };
 
