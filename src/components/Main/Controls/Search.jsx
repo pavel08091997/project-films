@@ -3,12 +3,24 @@ import styles from "./Search.module.css";
 
 const Search = ({ setSearchFilm }) => {
   const [value, setValue] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const handleChange = (event) => {
     setValue(event.target.value);
+    if(event.target.value === ''){
+      setIsButtonDisabled(true)
+    } else{
+      setIsButtonDisabled(false)
+    }
+  };
+
+  const submitChange = (event) => {
+    event.preventDefault();
+    setValue("");
+    setSearchFilm(value)
   };
   return (
-    <div className={styles.inputContainer}>
+    <form onSubmit={submitChange} className={styles.inputContainer}>
       <input
         type="text"
         placeholder="search"
@@ -16,10 +28,14 @@ const Search = ({ setSearchFilm }) => {
         value={value}
         onChange={handleChange}
       />
-      <button className={styles.button} onClick={() => setSearchFilm(value)}>
+      <button
+        className={styles.button}
+        disabled={isButtonDisabled}
+        // disabled={value === ''}
+      >
         Search
       </button>
-    </div>
+    </form>
   );
 };
 

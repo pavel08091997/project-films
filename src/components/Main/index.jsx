@@ -7,20 +7,26 @@ import { useEffect } from "react";
 const Main = () => {
   const [filmList, setFilmList] = useState([]);
   const [searchFilm, setSearchFilm] = useState("game");
+  const [filterFilm, setFilterFilm] = useState("all");
+  let url = `http://www.omdbapi.com/?apikey=436600bc&s=${searchFilm}`;
+
+  if (filterFilm !== "all") {
+    url = `http://www.omdbapi.com/?apikey=436600bc&s=${searchFilm}&type=${filterFilm}`;
+  }
 
   useEffect(() => {
-    fetch(`http://www.omdbapi.com/?apikey=436600bc&s=${searchFilm}`)
+    fetch(url)
       .then((response) => response.json())
       .then((data) => setFilmList(data.Search))
       .catch((err) => console.log(err));
-  }, [searchFilm]);
+  }, [searchFilm, filterFilm, url]);
 
   console.log(filmList);
   return (
     <>
       <div className="container">
         <Search setSearchFilm={setSearchFilm} />
-        <Filter />
+        <Filter setFilterFilm={setFilterFilm} />
         <FilmList filmList={filmList} />
       </div>
     </>

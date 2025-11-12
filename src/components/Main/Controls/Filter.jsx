@@ -2,14 +2,24 @@ import React from "react";
 import { useState } from "react";
 import GetElementFilter from "./GetElementFilter";
 
-const Filter = () => {
-  const [filter, setFilter] = useState("");
+const Filter = ({setFilterFilm}) => {
+  const [filter, setFilter] = useState("all");
 
   const handleChange = (event) => {
     setFilter(event.target.value);
+    setFilterFilm(event.target.value)
   };
 
-  const filterValues = ["all", "Movies only", "Series only"];
+  const filterValues = ["all", "movie", "series"];
+  // filterValues.filter((film) => {
+  //   if (film === "all") {
+  //     console.log("all");
+  //   } else if (film === "Movies only") {
+  //     console.log("Movies only");
+  //   } else if (film === "Series only") {
+  //     console.log("Series only");
+  //   }
+  // });
 
   return (
     <form action="#">

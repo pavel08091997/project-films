@@ -7,3 +7,6 @@ const props = {
 const { fruit } = props;
 console.log(fruit);
 console.log(props.fruit);
+
+
+console.log('1' === '1');
