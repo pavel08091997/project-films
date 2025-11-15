@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import styles from "./Search.module.css";
 
-const Search = ({ setSearchFilm }) => {
+const Search = ({ setSearchFilm, setIsLoading }) => {
   const [value, setValue] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const handleChange = (event) => {
     setValue(event.target.value);
-    if(event.target.value === ''){
-      setIsButtonDisabled(true)
-    } else{
-      setIsButtonDisabled(false)
+    if (event.target.value === "") {
+      setIsButtonDisabled(true);
+    } else {
+      setIsButtonDisabled(false);
     }
   };
 
   const submitChange = (event) => {
     event.preventDefault();
     setValue("");
-    setSearchFilm(value)
+    setSearchFilm(value);
+    setIsLoading(true);
   };
   return (
     <form onSubmit={submitChange} className={styles.inputContainer}>

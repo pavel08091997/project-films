@@ -3,11 +3,13 @@ import Search from "./Controls/Search";
 import FilmList from "./FilmList";
 import { useState } from "react";
 import { useEffect } from "react";
+import Loading from "./Loading";
 
 const Main = () => {
   const [filmList, setFilmList] = useState([]);
   const [searchFilm, setSearchFilm] = useState("game");
   const [filterFilm, setFilterFilm] = useState("all");
+  const [isLoading, setIsLoading] = useState(true);
   let url = `http://www.omdbapi.com/?apikey=436600bc&s=${searchFilm}`;
 
   if (filterFilm !== "all") {
@@ -17,7 +19,10 @@ const Main = () => {
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())
-      .then((data) => setFilmList(data.Search))
+      .then((data) => {
+        setFilmList(data.Search);
+        setIsLoading(false);
+      })
       .catch((err) => console.log(err));
   }, [searchFilm, filterFilm, url]);
 
@@ -25,9 +30,9 @@ const Main = () => {
   return (
     <>
       <div className="container">
-        <Search setSearchFilm={setSearchFilm} />
-        <Filter setFilterFilm={setFilterFilm} />
-        <FilmList filmList={filmList} />
+        <Search setSearchFilm={setSearchFilm} setIsLoading={setIsLoading} />
+        <Filter setFilterFilm={setFilterFilm} setIsLoading={setIsLoading} />
+        {isLoading ? <Loading /> : <FilmList filmList={filmList} />}
       </div>
     </>
   );

@@ -2,12 +2,13 @@ import React from "react";
 import { useState } from "react";
 import GetElementFilter from "./GetElementFilter";
 
-const Filter = ({setFilterFilm}) => {
+const Filter = ({setFilterFilm, setIsLoading}) => {
   const [filter, setFilter] = useState("all");
 
   const handleChange = (event) => {
     setFilter(event.target.value);
     setFilterFilm(event.target.value)
+    setIsLoading(true)
   };
 
   const filterValues = ["all", "movie", "series"];
