@@ -32,6 +32,7 @@ const Main = () => {
       <div className="container">
         <Search setSearchFilm={setSearchFilm} setIsLoading={setIsLoading} />
         <Filter setFilterFilm={setFilterFilm} setIsLoading={setIsLoading} />
+        <h2>Results for <span className = 'result'>{searchFilm}</span></h2>
         {isLoading ? <Loading /> : <FilmList filmList={filmList} />}
       </div>
     </>
